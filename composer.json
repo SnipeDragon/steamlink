@@ -1,0 +1,20 @@
+{
+    "name": "snipedragon/steamlink",
+    "description": "Provides authentication through Steam's OpenID and returns an object for the authenticated user.",
+    "keywords": ["steam", "steamlogin", "steam login", "steam-login"], 
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Spencer Sword",
+            "email": "snipedragon89@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.6.0"
+    },
+    "autoload": {
+        "psr-4": { "SnipeDragon\\": "src/" }
+    }
+}
