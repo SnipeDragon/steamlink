@@ -11,7 +11,7 @@ Provides authentication through Steam's OpenID and returns an object for the aut
 I could not find a solution that met my needs, so I made my own, the goals I set for myself are as follows:
 
 1.  Generate a Login Button/URL using Steam's provided login button graphics.
-2.  Begin a session and return a user object on login.
+2.  Begin a session (optional) and return a user object on login.
 3.  Have the ability to refresh a user object by providing a steamid.
 
 ## Getting Started - Composer
@@ -39,7 +39,8 @@ $options = array(
     'apiKey' => 'YOUR-API-KEY-HERE', // Steam API KEY
     'domainName' => 'https://your-site.net', // Shown on the Steam Login page to your users.
     'loginRedirect' => 'https://your-site.net/index.php?page=SteamLink&action=Login', // Returns user to this page on login.
-    'logoutRedirect' => 'https://your-site.net/index.php?page=SteamLink&action=Logout' // Returns user to this page on logout.
+    'logoutRedirect' => 'https://your-site.net/index.php?page=SteamLink&action=Logout', // Returns user to this page on logout.
+    'startSession' => false //true to start session, false to only validate and return a steam user object.
 );
 
 $steamlink = new SnipeDragon\SteamLink($options);
