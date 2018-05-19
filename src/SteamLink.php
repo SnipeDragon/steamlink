@@ -7,7 +7,7 @@ namespace SnipeDragon;
  * @author    Spencer Sword <snipedragon@gmail.com>
  * @license   https://opensource.org/licenses/MIT
  * @link      https://github.com/snipedragon/steamlink
- * @version   1.0.1
+ * @version   1.0.2
  */
 class SteamLink {
     protected $options = array(
@@ -69,7 +69,7 @@ class SteamLink {
             'openid.ns' => 'http://specs.openid.net/auth/2.0',
             'openid.mode' => 'checkid_setup',
             'openid.return_to' => $this->options["loginRedirect"],
-            'openid.realm' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'],
+            'openid.realm' => $this->options["domainName"],
             'openid.identity' => 'http://specs.openid.net/auth/2.0/identifier_select',
             'openid.claimed_id' => 'http://specs.openid.net/auth/2.0/identifier_select',
         );
@@ -109,7 +109,7 @@ class SteamLink {
             ),
         ));
         $result = file_get_contents("https://steamcommunity.com/openid/login", false, $context);
-        preg_match("#^http://steamcommunity.com/openid/id/([0-9]{17,25})#", $_GET['openid_claimed_id'], $matches);
+        preg_match("#^https://steamcommunity.com/openid/id/([0-9]{17,25})#", $_GET['openid_claimed_id'], $matches);
         $steamID64 = is_numeric($matches[1]) ? $matches[1] : 0;
         return preg_match("#is_valid\s*:\s*true#i", $result) == 1 ? $steamID64 : '';
     }
